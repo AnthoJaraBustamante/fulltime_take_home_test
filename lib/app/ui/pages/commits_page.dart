@@ -38,7 +38,22 @@ class _CommitsPageState extends State<CommitsPage> {
           }
           return Column(
             children: [
-              const SafeArea(child: SizedBox(height: 20)),
+              SafeArea(
+                  child: SizedBox(
+                height: 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    Opacity(
+                      opacity: 0.5,
+                      child: Text(
+                        'Done by Anthony Jara',
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                  ],
+                ),
+              )),
               Wrap(
                 children: [
                   const Icon(Icons.book_outlined, size: 18),

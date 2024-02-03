@@ -76,7 +76,11 @@ class _CommitsPageState extends State<CommitsPage> {
                       leading: const Icon(Icons.commit_outlined),
                       title: Row(
                         children: [
-                          Text(commit.commit.message),
+                          InkWell(
+                              onTap: () {
+                                launchUrlString('https://github.com/${Const.user}/${Const.repo}/commit/${commit.sha}');
+                              },
+                              child: Text(commit.commit.message)),
                         ],
                       ),
                       subtitle: Column(
@@ -92,7 +96,12 @@ class _CommitsPageState extends State<CommitsPage> {
                                 ),
                               ),
                               const SizedBox(width: 5),
-                              Text(commit.commit.author.name),
+                              InkWell(
+                                onTap: () => launchUrlString('https://github.com/${Const.user}/${Const.repo}/commits?author=${commit.author.url.split('/').last}'),
+                                child: Text(
+                                  commit.author.url.split('/').last,
+                                ),
+                              ),
                               const Spacer(),
                               Row(
                                 children: [

@@ -145,9 +145,9 @@ class _CommitsPageState extends State<CommitsPage> {
                                     ),
                                   ),
                                   InkWell(
-                                    onTap: () {
-                                      launchUrl(Uri.parse(commit.commit.tree.url));
-                                    },
+                                    onTap: () => launchUrl(
+                                      Uri.parse(commit.treeUrl),
+                                    ),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(
                                         vertical: 5,

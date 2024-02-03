@@ -35,9 +35,14 @@ class Commits {
   final CommitAuthor committer;
   final List<Parent> parents;
 
+  String get treeUrl {
+    return htmlUrl.replaceAll('/commit/', '/tree/');
+  }
+
   factory Commits.fromJson(Map<String, dynamic> json) => _$CommitsFromJson(json);
   Map<String, dynamic> toJson() => _$CommitsToJson(this);
 }
+
 @JsonSerializable(fieldRename: FieldRename.snake)
 class CommitAuthor {
   CommitAuthor({

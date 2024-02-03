@@ -120,6 +120,25 @@ class CommitAuthorClass {
 
   factory CommitAuthorClass.fromJson(Map<String, dynamic> json) => _$CommitAuthorClassFromJson(json);
   Map<String, dynamic> toJson() => _$CommitAuthorClassToJson(this);
+
+  String get commitedAt {
+    // difference between now and date
+    final now = DateTime.now();
+    final difference = now.difference(date);
+    if (difference.inDays > 0) {
+      return 'commited ${difference.inDays} days ago';
+    }
+    if (difference.inHours > 0) {
+      return 'commited ${difference.inHours} hours ago';
+    }
+    if (difference.inMinutes > 0) {
+      return 'commited ${difference.inMinutes} minutes ago';
+    }
+    if (difference.inSeconds > 0) {
+      return 'commited ${difference.inSeconds} seconds ago';
+    }
+    return 'commited ${difference.inDays}';
+  }
 }
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Tree {

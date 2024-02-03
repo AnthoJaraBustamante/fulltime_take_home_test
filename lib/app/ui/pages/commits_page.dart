@@ -73,7 +73,10 @@ class _CommitsPageState extends State<CommitsPage> {
                   itemBuilder: (context, index) {
                     final commit = state.commits[index];
                     return ListTile(
-                      leading: const Icon(Icons.commit_outlined),
+                      leading: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(Icons.commit_outlined),
+                      ),
                       title: Row(
                         children: [
                           InkWell(

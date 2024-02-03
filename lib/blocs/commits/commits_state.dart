@@ -6,10 +6,10 @@ class CommitsState extends Equatable {
 
   const CommitsState({this.isLoading = true, this.commits = const []});
 
-  CommitsState copyWith({bool? isLoading, List<Commit>? commits}) {
+  CommitsState copyWith({bool? isLoading, List<Commits>? commits}) {
     return CommitsState(
       isLoading: isLoading ?? this.isLoading,
-      commits: commits as List<Commits>? ?? this.commits,
+      commits: commits ?? this.commits,
     );
   }
 

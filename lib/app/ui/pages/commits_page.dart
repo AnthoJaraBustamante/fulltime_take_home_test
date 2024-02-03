@@ -156,7 +156,7 @@ class _CommitsPageState extends State<CommitsPage> {
                             ],
                           ),
                           Text(
-                            commit.commit.author.date.toIso8601String(),
+                            commit.commit.author.commitedAt,
                             style: GoogleFonts.blinker(
                               color: const Color(0xff8b949e),
                               // fontWeight: FontWeight.w2300,

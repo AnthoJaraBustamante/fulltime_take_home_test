@@ -97,7 +97,7 @@ class _CommitsPageState extends State<CommitsPage> {
                               ),
                               const SizedBox(width: 5),
                               InkWell(
-                                onTap: () => launchUrlString('https://github.com/${Const.user}/${Const.repo}/commits?author=${commit.author.url.split('/').last}'),
+                                onTap: () => launchUrlString('https://github.com/${commit.author.url.split('/').last}'),
                                 child: Text(
                                   commit.author.url.split('/').last,
                                 ),

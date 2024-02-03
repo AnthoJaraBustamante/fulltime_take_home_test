@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fulltime_take_home_test/app/data/network/consts.dart';
 import 'package:fulltime_take_home_test/blocs/commits/commits_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CommitsPage extends StatefulWidget {
   const CommitsPage({super.key});
@@ -34,10 +35,36 @@ class _CommitsPageState extends State<CommitsPage> {
           }
           return Column(
             children: [
-              const SafeArea(child: const SizedBox(height: 20)),
+              const SafeArea(child: SizedBox(height: 20)),
               Wrap(
                 children: [
-                  const Text('${Const.user} / ${Const.repo}'),
+                  const Icon(Icons.book_outlined, size: 18),
+                  DefaultTextStyle(
+                    style: GoogleFonts.blinker(
+                      color: const Color(0xff58a6ff),
+                    ),
+                    child: RichText(
+                      text: const TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Text(
+                              Const.user,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ' / ',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          WidgetSpan(
+                            child: Text(
+                              Const.repo,
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
               Expanded(

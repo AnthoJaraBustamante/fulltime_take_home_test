@@ -35,3 +35,11 @@ Para poder ejecutar este proyecto, sigue los pasos a continuación:
 ## Nota Importante
 
 Asegúrate de tener Flutter y Dart instalados en tu sistema antes de seguir estos pasos.
+
+## Versión de Flutter
+
+Este proyecto fue construido utilizando Flutter v3.7.7.
+
+## Vista Previa
+
+Puedes visualizar una vista previa del proyecto alojada en [https://fulltimeforce-take-home-test-antho-jb.netlify.app/](https://fulltimeforce-take-home-test-antho-jb.netlify.app/).

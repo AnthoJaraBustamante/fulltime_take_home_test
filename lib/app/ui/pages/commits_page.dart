@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fulltime_take_home_test/app/data/network/consts.dart';
 import 'package:fulltime_take_home_test/blocs/commits/commits_bloc.dart';
 
 class CommitsPage extends StatefulWidget {
@@ -31,15 +32,27 @@ class _CommitsPageState extends State<CommitsPage> {
               child: Text('No commits yet'),
             );
           }
-          return ListView.builder(
-            itemCount: state.commits.length,
-            itemBuilder: (context, index) {
-              final commit = state.commits[index];
-              return ListTile(
-                title: Text(commit.commit.message),
-                subtitle: Text(commit.commit.author.name),
-              );
-            },
+          return Column(
+            children: [
+              const SafeArea(child: const SizedBox(height: 20)),
+              Wrap(
+                children: [
+                  const Text('${Const.user} / ${Const.repo}'),
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: state.commits.length,
+                  itemBuilder: (context, index) {
+                    final commit = state.commits[index];
+                    return ListTile(
+                      title: Text(commit.commit.message),
+                      subtitle: Text(commit.commit.author.name),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),

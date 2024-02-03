@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:fulltime_take_home_test/app/data/models/api_responde.dart';
 import 'package:get_it/get_it.dart';
 
-import '../comits_models.dart';
+import '../models/commits_models.dart';
 import '../network/endpoints.dart';
 
 class CommitsApi {
@@ -16,12 +18,12 @@ class CommitsApi {
       if (response.statusCode == 200) {
         return ApiResponse(
           message: 'Lista de commits cargada correctamente',
-          data: <Commits>[],
+          data: commitsFromJson(json.encode(response.data as List<dynamic>)),
           success: true,
         );
       }
       return ApiResponse(
-        message: 'Error al cargar la lista de commits',
+        message: 'Error al cargar la lista de commits. Error ${response.statusCode}',
         data: <Commits>[],
         success: false,
       );

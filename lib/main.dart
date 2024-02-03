@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => CommitsBloc(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Fulltime Take Home Test',
         darkTheme: ThemeData.dark(),
         theme: ThemeData(
           primarySwatch: Colors.blue,

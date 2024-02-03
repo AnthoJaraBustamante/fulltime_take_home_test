@@ -1,3 +1,17 @@
+import 'dart:convert';
+
+import 'package:json_annotation/json_annotation.dart';
+
+part 'commits_models.g.dart';
+
+List<Commits> commitsFromJson(String str) =>
+    List<Commits>.from(json.decode(str).map((x) => Commits.fromJson(x)));
+
+String commitsToJson(List<Commits> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Commits {
   Commits({
     required this.sha,
@@ -20,8 +34,11 @@ class Commits {
   final CommitAuthor author;
   final CommitAuthor committer;
   final List<Parent> parents;
-}
 
+  factory Commits.fromJson(Map<String, dynamic> json) => _$CommitsFromJson(json);
+  Map<String, dynamic> toJson() => _$CommitsToJson(this);
+}
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CommitAuthor {
   CommitAuthor({
     required this.login,
@@ -62,8 +79,11 @@ class CommitAuthor {
   final String receivedEventsUrl;
   final String type;
   final bool siteAdmin;
-}
 
+  factory CommitAuthor.fromJson(Map<String, dynamic> json) => _$CommitAuthorFromJson(json);
+  Map<String, dynamic> toJson() => _$CommitAuthorToJson(this);
+}
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Commit {
   Commit({
     required this.author,
@@ -82,8 +102,11 @@ class Commit {
   final String url;
   final int commentCount;
   final Verification verification;
-}
 
+  factory Commit.fromJson(Map<String, dynamic> json) => _$CommitFromJson(json);
+  Map<String, dynamic> toJson() => _$CommitToJson(this);
+}
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CommitAuthorClass {
   CommitAuthorClass({
     required this.name,
@@ -94,8 +117,11 @@ class CommitAuthorClass {
   final String name;
   final String email;
   final DateTime date;
-}
 
+  factory CommitAuthorClass.fromJson(Map<String, dynamic> json) => _$CommitAuthorClassFromJson(json);
+  Map<String, dynamic> toJson() => _$CommitAuthorClassToJson(this);
+}
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Tree {
   Tree({
     required this.sha,
@@ -104,8 +130,11 @@ class Tree {
 
   final String sha;
   final String url;
-}
 
+  factory Tree.fromJson(Map<String, dynamic> json) => _$TreeFromJson(json);
+  Map<String, dynamic> toJson() => _$TreeToJson(this);
+}
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Verification {
   Verification({
     required this.verified,
@@ -118,8 +147,10 @@ class Verification {
   final String reason;
   final dynamic signature;
   final dynamic payload;
-}
 
+  factory Verification.fromJson(Map<String, dynamic> json) => _$VerificationFromJson(json);
+}
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Parent {
   Parent({
     required this.sha,
@@ -130,4 +161,7 @@ class Parent {
   final String sha;
   final String url;
   final String htmlUrl;
+
+  factory Parent.fromJson(Map<String, dynamic> json) => _$ParentFromJson(json);
+  Map<String, dynamic> toJson() => _$ParentToJson(this);
 }

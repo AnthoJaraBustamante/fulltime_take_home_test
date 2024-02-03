@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fulltime_take_home_test/app/data/network/consts.dart';
 import 'package:fulltime_take_home_test/blocs/commits/commits_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CommitsPage extends StatefulWidget {
   const CommitsPage({super.key});
@@ -44,22 +45,19 @@ class _CommitsPageState extends State<CommitsPage> {
                       color: const Color(0xff58a6ff),
                     ),
                     child: RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         children: [
-                          WidgetSpan(
-                            child: Text(
-                              Const.user,
-                            ),
+                          _buildUrlText(
+                            Const.user,
+                            'https://github.com/${Const.user}',
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: ' / ',
                             style: TextStyle(color: Colors.white),
                           ),
-                          WidgetSpan(
-                            child: Text(
-                              Const.repo,
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            ),
+                          _buildUrlText(
+                            Const.repo,
+                            'https://github.com/${Const.user}/${Const.repo}',
                           ),
                         ],
                       ),
@@ -82,6 +80,22 @@ class _CommitsPageState extends State<CommitsPage> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  WidgetSpan _buildUrlText(
+    String text,
+    String url,
+  ) {
+    return WidgetSpan(
+      child: InkWell(
+        onTap: () {
+          launchUrlString(url);
+        },
+        child: Text(
+          text,
+        ),
       ),
     );
   }

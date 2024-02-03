@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       create: (context) => CommitsBloc(),
       child: MaterialApp(
         title: 'Flutter Demo',
+        darkTheme: ThemeData.dark(),
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

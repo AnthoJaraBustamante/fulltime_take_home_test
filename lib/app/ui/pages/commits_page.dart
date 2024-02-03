@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fulltime_take_home_test/app/data/network/consts.dart';
 import 'package:fulltime_take_home_test/blocs/commits/commits_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class CommitsPage extends StatefulWidget {
@@ -71,8 +73,101 @@ class _CommitsPageState extends State<CommitsPage> {
                   itemBuilder: (context, index) {
                     final commit = state.commits[index];
                     return ListTile(
-                      title: Text(commit.commit.message),
-                      subtitle: Text(commit.commit.author.name),
+                      leading: const Icon(Icons.commit_outlined),
+                      title: Row(
+                        children: [
+                          Text(commit.commit.message),
+                        ],
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.symmetric(vertical: 5),
+                                child: CircleAvatar(
+                                  radius: 10,
+                                  backgroundImage: NetworkImage(commit.author.avatarUrl),
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              Text(commit.commit.author.name),
+                              const Spacer(),
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Clipboard.setData(ClipboardData(text: commit.sha));
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                          content: Text("Full SHA copied to clipboard"),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                      decoration: BoxDecoration(
+                                        border: Border(
+                                          right: BorderSide(
+                                            color: Colors.white.withOpacity(0.5),
+                                          ),
+                                        ),
+                                      ),
+                                      child: const Icon(Icons.copy_outlined, size: 15),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () => launchUrl(Uri.parse(commit.htmlUrl)),
+                                    child: Container(
+                                      constraints: const BoxConstraints(minWidth: 70),
+                                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                      child: Text(
+                                        commit.sha.substring(0, 7),
+                                        style: GoogleFonts.blinker(
+                                          color: const Color(0xff58a6ff),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      launchUrl(Uri.parse(commit.commit.tree.url));
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 5,
+                                        horizontal: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: Colors.white.withOpacity(0.5),
+                                          // width: 0.7,
+                                        ),
+                                      ),
+                                      child: const Icon(Icons.code, size: 15),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                          Text(
+                            commit.commit.author.date.toIso8601String(),
+                            style: GoogleFonts.blinker(
+                              color: const Color(0xff8b949e),
+                              // fontWeight: FontWeight.w2300,
+                              fontSize: 11,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                        ],
+                      ),
+                      horizontalTitleGap: 2,
+                      dense: true,
                     );
                   },
                 ),

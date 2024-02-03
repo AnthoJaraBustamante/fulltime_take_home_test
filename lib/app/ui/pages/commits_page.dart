@@ -15,13 +15,32 @@ class _CommitsPageState extends State<CommitsPage> {
     super.initState();
     context.read<CommitsBloc>().add(const FetchCommits());
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<CommitsBloc, CommitsState>(
         builder: (context, state) {
-          return Text('Is Loading: ${state.isLoading}');
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state.commits.isEmpty) {
+            return const Center(
+              child: Text('No commits yet'),
+            );
+          }
+          return ListView.builder(
+            itemCount: state.commits.length,
+            itemBuilder: (context, index) {
+              final commit = state.commits[index];
+              return ListTile(
+                title: Text(commit.commit.message),
+                subtitle: Text(commit.commit.author.name),
+              );
+            },
+          );
         },
       ),
     );

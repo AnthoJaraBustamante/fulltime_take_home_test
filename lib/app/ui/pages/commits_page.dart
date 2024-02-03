@@ -10,7 +10,12 @@ class CommitsPage extends StatefulWidget {
 }
 
 class _CommitsPageState extends State<CommitsPage> {
-
+  @override
+  void initState() {
+    super.initState();
+    context.read<CommitsBloc>().add(const FetchCommits());
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

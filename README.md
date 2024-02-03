@@ -1,16 +1,37 @@
 # fulltime_take_home_test
 
-A new Flutter project.
+Bienvenido/a a mi increíble proyecto en Flutter.
 
-## Getting Started
+## Instalación y Ejecución
 
-This project is a starting point for a Flutter application.
+Para poder ejecutar este proyecto, sigue los pasos a continuación:
 
-A few resources to get you started if this is your first Flutter project:
+1. **Clona este repositorio:**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    ```bash
+    git clone https://github.com/AnthoJaraBustamante/fulltime_take_home_test.git
+    ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **Ingresa al directorio del proyecto:**
+
+    ```bash
+    cd fulltime_take_home_test
+    ```
+
+3. **Instala las dependencias:**
+
+    ```bash
+    flutter pub get
+    ```
+
+4. **Ejecuta la aplicación:**
+
+    ```bash
+    flutter run
+    ```
+
+¡Eso es todo! Ahora deberías tener la aplicación en funcionamiento.
+
+## Nota Importante
+
+Asegúrate de tener Flutter y Dart instalados en tu sistema antes de seguir estos pasos.
